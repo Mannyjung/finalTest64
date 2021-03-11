@@ -1,0 +1,32 @@
+*{
+    font-family: 'Fascinate', cursive;
+  font-family: 'Indie Flower', cursive;
+  font-family: 'Roboto Mono', monospace;
+}
+.pimg{
+    border-radius: 100%;
+    /* margin-left: 40%;
+    margin-right: 40%; */
+   
+	overflow: hidden;
+	-webkit-box-sizing: content-box;
+  	-moz-box-sizing: content-box;
+  	box-sizing: content-box;
+      /* margin: 0 auto;		 */
+		border: 5px solid #414142;
+		width: 150px;
+		height: 150px;
+        clear: both;	
+}
+
+.pro{
+    float: none;
+        width: auto;
+}
+h3{
+    text-align: center;
+}
+
+#head{
+    background-color: rgb(18, 235, 235);
+}

@@ -1,0 +1,16 @@
+.ss{
+    padding: 1%;
+    padding-left: 30%;
+    padding-right: 30%;
+    
+}
+.profile{
+    border-radius: 50%;
+   height: 50px;
+   width: 50px;
+}
+.photo{
+    border-radius: 10px;
+    
+  
+}

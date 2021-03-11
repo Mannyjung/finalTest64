@@ -34,7 +34,7 @@ const Profile = ({ id }) => {
         {result.map(Users => (
           <>
 
-            <CardHeader style={{ backgroundColor: "pink" }} >
+            <CardHeader style={{ backgroundColor: "#FAFCDA" }} >
               <center>
                 <img className="pimg" src={Users.profile_image.large} />
               </center>
@@ -43,13 +43,13 @@ const Profile = ({ id }) => {
               <center>
                 <Label><b>{Users.total_photos}</b> post&emsp;&emsp;<b>{Users.total_likes}</b> followers&emsp;&emsp;<b>{Users.total_collections}</b> follwing</Label>
                 <br /><br />
-                <Label><b>Full name</b>&emsp;{Users.bio}</Label>
+                <Label><b>{Users.name}</b>&emsp;{Users.bio}</Label>
               </center>
             </CardHeader>
           </>
         ))}
         <br />
-      
+        
         <Card>
           <CardBody>
             <Row>
@@ -57,9 +57,10 @@ const Profile = ({ id }) => {
           <>
               <Col sm="4">
                 <Card inverse>
-                  <CardImg width="100%" src={photo.urls.raw} alt="Card image cap" />
-                </Card>
+                  <CardImg width="100%" height="370px" src={photo.urls.raw} alt="Card image cap" />
+                </Card><br/>
               </Col>
+              
               </>
         ))}
             </Row>

@@ -4,6 +4,7 @@
   font-family: 'Fascinate', cursive;
   font-family: 'Indie Flower', cursive;
   font-family: 'Roboto Mono', monospace;
+
 }
 
 .search{
@@ -14,10 +15,7 @@
   font-family: 'Roboto Mono', monospace;
   color: #333;
   font-size: 20px;
-  background-attachment: fixed;
-  background-repeat: repeat-x;
-  min-height: 100vh;
-  background-color: rgb(243, 172, 196);
+ 
 }
 .btn{
   width: 100px;

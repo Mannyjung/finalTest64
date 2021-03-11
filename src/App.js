@@ -6,15 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="test">
-   <Router>
-         
+   <Router>   
          <Switch>
            <Route exact path="/" component={Home} /> ,
            <Route exact path="/profile/:id" component={Profile} /> ,
          </Switch>
        </Router>
-    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from '@material-ui/core';
-import { Button, Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle} from 'reactstrap';
+import { Button, Card, CardBody, Col, CardLink, CardSubtitle, Row, Input, CardText, CardTitle } from 'reactstrap';
 import "../css/search.css";
 import "../css/showphoto.css";
 import axios from 'axios';
@@ -21,40 +21,48 @@ const Search = () => {
             console.log(response);
             setResult(response.data.results);
         });
-    
+
     };
 
     return (
-        <div >
+        <>
             <Container className="search">
-
-
-                <div className="app">
-                    <div className="heading">
-                        <h1 className="hh" >Manny Stagram</h1>
+                <div key="div" className="app">
+                    <div key="div" className="heading" style={{marginTop:"5%"}}>
+                        <h1 className="hh" >Final-Exam</h1>
                     </div>
 
-                    <div className="input">
-                        <center>
-                        <input onChange={handleChange} type="text" name="image" placeholder="Search for images" />
-                        <Button className="btn-warning" onClick={handleSubmit} type="submit">Search</Button></center>
+                    <div  key="div"className="heading" style={{marginTop:"3%"}} className="input">
+
+                        <Row>
+
+                            <Col sm={9} >
+                                <div key="div" align="right" >
+                                <Input onChange={handleChange} type="text" name="image" placeholder="Search for images" style={{width:"600px"}}/>
+                                </div>
+                            </Col>
+                            <Col sm={3} >
+                                <Button className="btn-success" onClick={handleSubmit} type="submit">Search</Button>
+                            </Col>
+
+                        </Row>
                     </div>
-                    
+
                     <div className="result">
                         {result.map((image) => (
                             <div className="ss">
                                 <Card >
                                     <CardBody >
-                                        <CardTitle tag="h5"> <img className="profile" src={image.user.profile_image.medium} /> <a href={"/profile/"+ image.user.username}>{image.user.username}</a></CardTitle>
+                                        <CardTitle tag="h5"> <img className="profile" src={image.user.profile_image.medium} /> <a href={"/profile/" + image.user.username}>{image.user.username}</a></CardTitle>
 
                                     </CardBody>
                                     <CardBody  >
-                                        <img width="100%" className="photo" src={image.urls.thumb} alt="Card image cap" />
+                                        <img  key="img" width="100%" className="photo" src={image.urls.raw} alt="Card image cap" />
                                     </CardBody>
                                     <CardBody>
                                         <CardText><FontAwesomeIcon icon={faHeart} />{image.likes} Like <FontAwesomeIcon icon={faComment} /></CardText>
                                         <CardText><b>{image.user.username}</b> {image.description}</CardText>
-                                      
+
                                     </CardBody>
                                 </Card>
                             </div>
@@ -63,7 +71,7 @@ const Search = () => {
                 </div>
 
             </Container>
-        </div>
+        </>
     )
 }
 

@@ -9,17 +9,17 @@ import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const Search = () => {
     const [image, setImage] = useState("");
-    const clientId = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
-    const [result, setResult] = useState([]);
+    const accessKey = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
+    const [allUser, setAllUser] = useState([]);
     const handleChange = (event) => {
         setImage(event.target.value);
     };
     const handleSubmit = () => {
         console.log(image);
-        const api = "https://api.unsplash.com/search/photos?page=1&query=" + image + "&client_id=" + clientId;
+        const api = "https://api.unsplash.com/search/photos?page=1&query=" + image + "&client_id=" + accessKey;
         axios.get(api).then((response) => {
             console.log(response);
-            setResult(response.data.results);
+            setAllUser(response.data.results);
         });
 
     };
@@ -28,17 +28,17 @@ const Search = () => {
         <>
             <Container className="search">
                 <div key="div" className="app">
-                    <div key="div" className="heading" style={{marginTop:"5%"}}>
+                    <div key="div" className="heading" style={{ marginTop: "5%" }}>
                         <h1 className="hh" >Final-Exam</h1>
                     </div>
 
-                    <div  key="div"className="heading" style={{marginTop:"3%"}} className="input">
+                    <div key="div" className="heading" style={{ marginTop: "3%" }} className="input">
 
                         <Row>
 
                             <Col sm={9} >
                                 <div key="div" align="right" >
-                                <Input onChange={handleChange} type="text" name="image" placeholder="Search for images" style={{width:"600px"}}/>
+                                    <Input onChange={handleChange} type="text" name="image" placeholder="Search for images" style={{ width: "600px" }} />
                                 </div>
                             </Col>
                             <Col sm={3} >
@@ -49,20 +49,21 @@ const Search = () => {
                     </div>
 
                     <div className="result">
-                        {result.map((image) => (
+                        {allUser.map((image) => (
                             <div className="ss">
                                 <Card >
                                     <CardBody >
-                                        <CardTitle tag="h5"> <img className="profile" src={image.user.profile_image.medium} /> <a href={"/profile/" + image.user.username}>{image.user.username}</a></CardTitle>
-
+                                        <CardTitle tag="h5"> 
+                                        <img className="profile" src={image.user.profile_image.medium} />{" "}
+                                        <a href={"/profile/" + image.user.username}>{image.user.username}</a>
+                                        </CardTitle>
                                     </CardBody>
                                     <CardBody  >
-                                        <img  key="img" width="100%" className="photo" src={image.urls.raw} alt="Card image cap" />
+                                        <img key="img" width="100%" className="photo" src={image.urls.raw} alt="Card image cap" />
                                     </CardBody>
                                     <CardBody>
                                         <CardText><FontAwesomeIcon icon={faHeart} />{image.likes} Like <FontAwesomeIcon icon={faComment} /></CardText>
                                         <CardText><b>{image.user.username}</b> {image.description}</CardText>
-
                                     </CardBody>
                                 </Card>
                             </div>

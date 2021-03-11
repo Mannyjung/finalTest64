@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardHeader, CardImg, CardImgOverlay, CardLink, CardSubtitle, CardText, CardTitle, Col, Container, Label, Row } from 'reactstrap'
 import "../css/profile.css"
 import ReactDOM from 'react-dom'
@@ -10,16 +9,16 @@ import axios from 'axios';
 const Profile = ({ id }) => {
   console.log(id)
 
-  const [result, setResult] = useState([]);
+  const [user, setUser] = useState([]);
   const [photobyuser, setPhotobyuser] = useState([]);
-  const clientId = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
-  const apiuser = "https://api.unsplash.com/search/users?page=1&query=" + id + "&client_id=" + clientId;
-  const apiuphotoByuser = "https://api.unsplash.com/users/" + id + "/photos?page=1&query=&client_id=" + clientId;
+  const accessKey = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
+  const apiuser = "https://api.unsplash.com/search/users?page=1&query=" + id + "&client_id=" + accessKey;
+  const apiuphotoByuser = "https://api.unsplash.com/users/" + id + "/photos?page=1&query=&client_id=" + accessKey;
   
   useEffect(() => {
     axios.get(apiuser).then((response) => {
       console.log(response);
-      setResult(response.data.results);
+      setUser(response.data.results);
     });
     axios.get(apiuphotoByuser).then((response) => {
       console.log(response);
@@ -31,7 +30,7 @@ const Profile = ({ id }) => {
   return (
     <>
       <Container>
-        {result.map(Users => (
+        {user.map(Users => (
           <>
 
             <CardHeader style={{ backgroundColor: "#FAFCDA" }} >
@@ -57,7 +56,7 @@ const Profile = ({ id }) => {
           <>
               <Col sm="4">
                 <Card inverse>
-                  <CardImg width="100%" height="370px" src={photo.urls.raw} alt="Card image cap" />
+                  <CardImg width="100%" height="50%" src={photo.urls.raw} alt="Card image cap" />
                 </Card><br/>
               </Col>
               

@@ -4,7 +4,10 @@ import "../css/profile.css"
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
+import PhotoList from "./PhotoList";
+
 import axios from 'axios';
+
 
 const Profile = ({ id }) => {
   console.log(id)
@@ -12,8 +15,8 @@ const Profile = ({ id }) => {
   const [user, setUser] = useState([]);
   const [photobyuser, setPhotobyuser] = useState([]);
   const accessKey = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
-  const apiuser = "https://api.unsplash.com/search/users?page=1&query=" + id + "&client_id=" + accessKey;
-  const apiuphotoByuser = "https://api.unsplash.com/users/" + id + "/photos?page=1&query=&client_id=" + accessKey;
+  const apiuser = "https://api.unsplash.com/search/users?page=1&query=" + id + "&per_page=1&client_id=" + accessKey;
+  const apiuphotoByuser = "https://api.unsplash.com/users/" + id + "/photos?page=1&query=&per_page=15&client_id=" + accessKey;
   
   useEffect(() => {
     axios.get(apiuser).then((response) => {
@@ -38,9 +41,9 @@ const Profile = ({ id }) => {
                 <img className="pimg" src={Users.profile_image.large} />
               </center>
               <h3>{Users.username}</h3>
-              <hr />
+              <hr className="hr" />
               <center>
-                <Label><b>{Users.total_photos}</b> post&emsp;&emsp;<b>{Users.total_likes}</b> followers&emsp;&emsp;<b>{Users.total_collections}</b> follwing</Label>
+                <Label><b>{Users.total_photos}</b> post&emsp;&emsp;<b>{Users.total_likes}</b> Likes&emsp;&emsp;<b>{Users.total_collections}</b> Collections</Label>
                 <br /><br />
                 <Label><b>{Users.name}</b>&emsp;{Users.bio}</Label>
               </center>
@@ -54,11 +57,8 @@ const Profile = ({ id }) => {
             <Row>
             {photobyuser.map(photo => (
           <>
-              <Col sm="4">
-                <Card inverse>
-                  <CardImg width="100%" height="50%" src={photo.urls.raw} alt="Card image cap" />
-                </Card><br/>
-              </Col>
+
+             <PhotoList photo={photo}  />
               
               </>
         ))}

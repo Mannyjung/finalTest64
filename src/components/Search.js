@@ -4,10 +4,10 @@ import { Button, Card, CardBody, Col, CardLink, CardSubtitle, Row, Input, CardTe
 import "../css/search.css";
 import "../css/showphoto.css";
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
+import ReactTypingEffect from 'react-typing-effect';
+import Show from './Show';
 
-const Search = () => {
+const Search = (props) => {
     const [image, setImage] = useState("");
     const accessKey = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
     const [allUser, setAllUser] = useState([]);
@@ -16,7 +16,7 @@ const Search = () => {
     };
     const handleSubmit = () => {
         console.log(image);
-        const api = "https://api.unsplash.com/search/photos?page=1&query=" + image + "&client_id=" + accessKey;
+        const api = "https://api.unsplash.com/search/photos?page=1&query=" + image + "&per_page=15&client_id=" + accessKey;
         axios.get(api).then((response) => {
             console.log(response);
             setAllUser(response.data.results);
@@ -26,46 +26,45 @@ const Search = () => {
 
     return (
         <>
+            <Row>
+                <Col sm={4}>
+                <div align="left">
+                    <img src="../img/cat.gif" />
+                    </div>
+                </Col>
+                <Col sm={4}>
+                    <div align="center" style={{marginTop:"5%"}}>
+                    <img src="../img/123.gif"height="300px" />
+                    </div>
+                </Col>
+                <Col sm={4}>
+                    <div align="right" style={{marginTop:"5%"}}>
+                    <img src="../img/cat2.gif" height="150px" />
+                    </div>
+                </Col>
+            </Row>
             <Container className="search">
                 <div key="div" className="app">
+
                     <div key="div" className="heading" style={{ marginTop: "5%" }}>
-                        <h1 className="hh" >Final-Exam</h1>
+                        <center>
+                            <ReactTypingEffect text={'Final-Test'} speed="60" eraseSpeed="60" className="typingeffect"></ReactTypingEffect>
+                        </center>
                     </div>
 
                     <div key="div" className="heading" style={{ marginTop: "3%" }} className="input">
-
-                        <Row>
-
-                            <Col sm={9} >
-                                <div key="div" align="right" >
-                                    <Input onChange={handleChange} type="text" name="image" placeholder="Search for images" style={{ width: "600px" }} />
-                                </div>
-                            </Col>
-                            <Col sm={3} >
-                                <Button className="btn-success" onClick={handleSubmit} type="submit">Search</Button>
-                            </Col>
-
-                        </Row>
+                        <div key="div" align="center" >
+                            <Input onChange={handleChange} type="text" name="image" placeholder="Search for images" style={{ width: "50%" }} />
+                        </div>
+                        <div key="div" align="center" style={{ marginTop: "2%" }}>
+                            <Button className="btn-success" onClick={handleSubmit} type="submit">Search</Button>
+                        </div>
                     </div>
 
                     <div className="result">
                         {allUser.map((image) => (
                             <div className="ss">
-                                <Card >
-                                    <CardBody >
-                                        <CardTitle tag="h5"> 
-                                        <img className="profile" src={image.user.profile_image.medium} />{" "}
-                                        <a href={"/profile/" + image.user.username}>{image.user.username}</a>
-                                        </CardTitle>
-                                    </CardBody>
-                                    <CardBody  >
-                                        <img key="img" width="100%" className="photo" src={image.urls.raw} alt="Card image cap" />
-                                    </CardBody>
-                                    <CardBody>
-                                        <CardText><FontAwesomeIcon icon={faHeart} />{image.likes} Like <FontAwesomeIcon icon={faComment} /></CardText>
-                                        <CardText><b>{image.user.username}</b> {image.description}</CardText>
-                                    </CardBody>
-                                </Card>
+                               <Show image={image} />
                             </div>
                         ))}
                     </div>

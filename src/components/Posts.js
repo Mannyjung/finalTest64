@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardBody, Col, CardLink, CardSubtitle, Row, Input, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardText, CardTitle } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
 const Show = ({image}) => {

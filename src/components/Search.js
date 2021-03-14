@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Container } from '@material-ui/core';
-import { Button, Card, CardBody, Col, CardLink, CardSubtitle, Row, Input, CardText, CardTitle } from 'reactstrap';
+import { Button, Input, } from 'reactstrap';
 import "../css/search.css";
 import "../css/showphoto.css";
 import axios from 'axios';
 import ReactTypingEffect from 'react-typing-effect';
-import Show from './Show';
+import Show from './Posts';
 
-const Search = (props) => {
+const Search = () => {
     const [image, setImage] = useState("");
     const accessKey = "u7tQXBRBlaT_iJvWsMr6TEnoGuvqiI5qc7xgdDXaJe0";
     const [allUser, setAllUser] = useState([]);
@@ -21,28 +21,15 @@ const Search = (props) => {
             console.log(response);
             setAllUser(response.data.results);
         });
-
     };
-
     return (
         <>
-            <Row>
-                <Col sm={4}>
-                <div align="left">
-                    <img src="../img/cat.gif" />
-                    </div>
-                </Col>
-                <Col sm={4}>
-                    <div align="center" style={{marginTop:"5%"}}>
-                    <img src="../img/123.gif"height="300px" />
-                    </div>
-                </Col>
-                <Col sm={4}>
-                    <div align="right" style={{marginTop:"5%"}}>
-                    <img src="../img/cat2.gif" height="150px" />
-                    </div>
-                </Col>
-            </Row>
+
+
+            <center style={{ marginTop: "5%" }}>
+                <img src="../img/123.gif" height="150px" />
+            </center>
+
             <Container className="search">
                 <div key="div" className="app">
 
@@ -64,7 +51,7 @@ const Search = (props) => {
                     <div className="result">
                         {allUser.map((image) => (
                             <div className="ss">
-                               <Show image={image} />
+                                <Show image={image} />
                             </div>
                         ))}
                     </div>
